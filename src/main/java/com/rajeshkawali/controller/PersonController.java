@@ -1,6 +1,7 @@
 package com.rajeshkawali.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -61,10 +62,10 @@ public class PersonController {
 	}
 	
 	@PutMapping("/update/{id}")
-	public Mono<Person> updatePerson(@RequestBody Mono<Person> personMono, @PathVariable String id) {
+	public Mono<Person> updatePerson(@RequestBody Person person, @PathVariable String id) {
 		String _function = ".updatePerson";
 		log.info(CLASS_NAME + _function + "::ENTER");
-		return personService.updatePerson(personMono, id);
+		return personService.updatePerson(person, id);
 	}
 	
 	@DeleteMapping(value = "/delete/{id}")
@@ -72,6 +73,34 @@ public class PersonController {
 		String _function = ".deletePerson";
 		log.info(CLASS_NAME + _function + "::ENTER");
 		return personService.deletePerson(id);
+	}
+	
+	@GetMapping(value = "/getAllMalePersons", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
+	public Flux<Person> getAllMalePersons() {
+		String _function = ".getAllMalePersons";
+		log.info(CLASS_NAME + _function + "::ENTER");
+		return personService.getAllMalePersons();
+	}
+	
+	@GetMapping(value = "/getNameOfAllPerson", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
+	public Flux<String> getNameOfAllPerson() {
+		String _function = ".getNameOfAllPerson";
+		log.info(CLASS_NAME + _function + "::ENTER");
+		return personService.getNameOfAllPerson();
+	}
+	
+	@GetMapping(value = "/getAllPersonwithGreenEye", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
+	public Flux<Person> getAllPersonwithGreenEye() {
+		String _function = ".getAllPersonwithGreenEye";
+		log.info(CLASS_NAME + _function + "::ENTER");
+		return personService.getAllPersonwithGreenEye();
+	}
+	
+	@GetMapping(value = "/getPersonWithAgeAndEyeColor/{index}")
+	public Mono<Person> getPersonWithAgeAndEyeColor(@PathVariable Integer index) {
+		String _function = ".getPersonWithAgeAndEyeColor";
+		log.info(CLASS_NAME + _function + "::ENTER");
+		return personService.getPersonWithAgeAndEyeColor(index);
 	}
 
 }

@@ -52,10 +52,10 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
-	public Mono<Person> updatePerson(Mono<Person> personMono, String id) {
+	public Mono<Person> updatePerson(Person person, String id) {
 		String _function = ".updatePerson";
 		log.info(CLASS_NAME + _function + "::ENTER");
-		return personRepository.updatePerson(personMono, id);
+		return personRepository.updatePerson(person, id);
 	}
 
 	@Override
@@ -63,6 +63,34 @@ public class PersonServiceImpl implements PersonService {
 		String _function = ".deletePerson";
 		log.info(CLASS_NAME + _function + "::ENTER");
 		return personRepository.deletePerson(id);
+	}
+	
+	@Override
+	public Flux<Person> getAllMalePersons() {
+		String _function = ".getAllMalePersons";
+		log.info(CLASS_NAME + _function + "::ENTER");
+		return personRepository.getAllMalePersons();
+	}
+
+	@Override
+	public Flux<String> getNameOfAllPerson() {
+		String _function = ".getNameOfAllPerson";
+		log.info(CLASS_NAME + _function + "::ENTER");
+		return personRepository.getNameOfAllPerson();
+	}
+
+	@Override
+	public Flux<Person> getAllPersonwithGreenEye() {
+		String _function = ".getAllPersonwithGreenEye";
+		log.info(CLASS_NAME + _function + "::ENTER");
+		return personRepository.getAllPersonwithGreenEye();
+	}
+
+	@Override
+	public Mono<Person> getPersonWithAgeAndEyeColor(Integer index) {
+		String _function = ".getPersonWithAgeAndEyeColor";
+		log.info(CLASS_NAME + _function + "::ENTER");
+		return personRepository.getPersonWithAgeAndEyeColor(index);
 	}
 
 }

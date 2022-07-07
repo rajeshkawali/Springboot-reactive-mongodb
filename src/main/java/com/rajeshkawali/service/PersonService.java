@@ -12,15 +12,23 @@ import reactor.core.publisher.Mono;
 public interface PersonService {
 
 	public Flux<Person> getAllPersons();
-	
+
 	public Mono<Person> getPersonById(Integer index);
 
 	public Flux<Person> getPersonsByGenderAndEyeColor(String gender, String eyeColor);
 
 	public Mono<Person> savePerson(Mono<Person> personMono);
 
-	public Mono<Person> updatePerson(Mono<Person> personMono, String id);
-	
+	public Mono<Person> updatePerson(Person person, String id);
+
 	public Mono<String> deletePerson(String id);
+
+	public Flux<Person> getAllMalePersons();
+
+	public Flux<String> getNameOfAllPerson();
+
+	public Flux<Person> getAllPersonwithGreenEye();
+
+	public Mono<Person> getPersonWithAgeAndEyeColor(Integer index);
 
 }
